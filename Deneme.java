@@ -15,4 +15,4 @@ Class Deneme{
    System.out.println("12123123");
   System.out.println("qwer");
   }
-}
+
