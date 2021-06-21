@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Admin extends Officer{
-	Admin(String name, String surname, String mail, String password, int ID) {
-		super(name, surname, mail, password, ID);
+	Admin(String name, String surname, String mail, String password, int ID , DataBase db) {
+		super(name, surname, mail, password, ID , db);
 		//TODO Auto-generated constructor stub
 	}
 	/**
@@ -68,7 +68,7 @@ public class Admin extends Officer{
 	public boolean removeOfficer(ArrayList < Officer > officers , Officer oldOfficer){
 		// Registers teacher by using Array List's add method.
 		boolean success;
-		success = teachers.remove(oldOfficer);
+		success = officers.remove(oldOfficer);
 		return success;
 	}
 
@@ -87,6 +87,7 @@ public class Admin extends Officer{
 	}
 
 	public void menu(){
+		DataBase db = null;
 		int choice , innerChoice;
 		for (;;) {
 			System.out.println("WELCOME TO ADMIN MENU");
@@ -111,7 +112,7 @@ public class Admin extends Officer{
 					String mail,password, name, surname;
 					int id,year;
 					System.out.println("Enter name");
-					name; = scanner.nextLine();
+					name = scanner.nextLine();
 					System.out.println("Enter surname");
 					surname = scanner.nextLine();
 					System.out.println("Enter id");
@@ -124,17 +125,17 @@ public class Admin extends Officer{
 						case 0:
 						break;
 						case 1:
-							Officer temp = new Officer(name, surname, mail, password, id);
+							Officer temp = new Officer(name, surname, mail, password, id , db);
 							//add database the Officer.
 						break;
 						case 2:
 							System.out.println("Enter year");
-							year = scanner.nextLine();
-							Student temp = new Student(mail, password, name, surname, id, year);
+							year = scanner.nextInt();
+							Student temp1 = new Student(mail, password, name, surname, id, year);
 							//add database the student.
 						break;
 						case 3:
-							Admin temp = new Admin(name, surname, mail, password, id);
+							Admin temp2 = new Admin(name, surname, mail, password, id , db);
 							//add database the Admin.
 						break;
 						default:
@@ -142,7 +143,6 @@ public class Admin extends Officer{
 					}
 				break;
 				case 2:
-					int id;
 					System.out.println("0) Exit");
 					System.out.println("1) Remove User");
 					innerChoice = scanner.nextInt();
@@ -159,7 +159,6 @@ public class Admin extends Officer{
 					}
 				break;
 				case 3:
-					int id;
 					System.out.println("0) Exit");
 					System.out.println("1) Inquire User");
 					innerChoice = scanner.nextInt();
